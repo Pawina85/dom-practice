@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Random User</title>
+    </head>
+
+    <body>
+    <h1>Random User</h1>
+<p id="username">No one yet</p>
+
+<button id="btn">Get User</button>
+<img id="avatar" width="120">
+
+<script>
+async function getRandomUser() {
+    const response = await fetch("https://randomuser.me/api/")
+    const data = await response.json()
+    console.log(data)
+}
+const avatar = document.getElementById("avatar")
+
+btn.addEventListener("click", async () => {
+  username.innerText = "Loading...";
+  avatar.src = "";
+
+  const response = await fetch("https://randomuser.me/api/");
+  const data = await response.json();
+
+  const user = data.results[0];
+  username.innerText = user.name.first + " " + user.name.last;
+  avatar.src = user.picture.medium;
+});
+
+</script>
+
+</body>
